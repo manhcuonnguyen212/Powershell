@@ -5,35 +5,45 @@
 # 1. Test connection between mutiple devices 
     function test-Con()
     {
-        param($ip)
-        $ping = New-object System.Net.NetworkInformation.ping 
-
-        foreach($x in 1..254)
+        $result = $()
+        $server = @("192.168.1.1","192.168.1.2","192.168.1.100")
+        #$ping = New-object System.Net.NetworkInformation.ping 
+        foreach($x in $server)
         {
-         <# using Test-Connection/Test-NetConnection powershell command (ICMP ping)
-            try{
-                #write-host " Connection to $ip.$x :" 
-                <#if((Test-Connection "$ip.$x" -count 1 ).Status -eq "Success")
-                {
-                    write-host "Sucessfully"
+            $device = (Test-Connection $x -Count 1)
+            if($device.status -eq "Success")
+            {
+                $mac = $null
+                arp -a | ForEach-Object{ 
+                    if ($_ -match $x)
+                    {
+                        $mac = [Regex]::matches($_,"[0-9a-z]{2}-[0-9a-z]{2}-[0-9a-z]{2}-[0-9a-z]{2}-[0-9a-z]{2}-[0-9a-z]{2}").value
+                    try
+               {
+                
+                $vendor = Invoke-WebRequest -Uri "https://api.macvendors.com/$mac"
+               }
+               catch{
+                    $vendor = $null
+                }
+                finally{
+                   
+                   if ($vendor){
+                    $ob = [PSCustomObject]@{
+                        "IPv4" = $x 
+                        "HostName" = (Resolve-DnsName $x -ErrorAction SilentlyContinue).NameHost
+                        "Response" = $device.Status
+                        "Manufacturer"=$vendor  
+                    }
+                    write-host $ob
+                    }
                 } 
-                else 
-                {
-                    write-host "Unreachablely"
-                } 
-            }
-            catch {
-                write-host $_.Exception
-            }
-                #>
-            #Using .Net API
-            $ping.send("$ip.$x")
-            write-host $ping
-     }
-         
-        
+                }
+                }
+        } 
     }
-test-Con("192.168.1")
+}
+test-Con
 # 2. Resolve host names 
 <#function resolve-hostName()
     {
