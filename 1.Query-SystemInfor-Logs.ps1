@@ -1,5 +1,6 @@
-#author: Nguyen Dang Manh Cuong
-
+#Author: Nguyen Dang Manh Cuong
+#Date: 2025-05-15
+#In this file, we will perform retrieving a basic information about the current system. 
 # 1. retrieving process information
 <#        function processInfor {
             param ($name)
