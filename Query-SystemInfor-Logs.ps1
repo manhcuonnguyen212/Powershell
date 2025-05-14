@@ -1,7 +1,7 @@
 #author: Nguyen Dang Manh Cuong
 
 #retrieving process information
-        function processInfor {
+<#        function processInfor {
             param ($name)
             # retrieve running processes    
             try{
@@ -15,7 +15,7 @@
                 # writing out the error
             }
             finally {
-                write-host "The program has run completely." -ForegroundColor white
+                write-host "The program 1 has run completely." -ForegroundColor white
             }
             # retrieve process attributes
             get-process -IncludeUserName | where-object {$_.Username -like "*system*"} | Select-Object name,startTime,@{Name="CPU";Expression={[math]::Round($_.CPU,2)}},Path
@@ -23,3 +23,41 @@
         }
         $name = read-host "Enter a process that you want to get infor " # get name of the process
         processInfor($name)
+#>
+        # retrieve services running 
+<#        Function serviceInfor {
+            param($name)
+            try {
+                $var1 = get-service -Name $name -ErrorAction stop  
+                #get a specific service infor using get-service cmdlet and stop if there was an error 
+                $var1.DisplayName
+                $var1.RequiredServices
+                $var1.DependentServices
+            }
+            catch {
+                write-host "An error occured: $_.Exception" -ForegroundColor green 
+            }
+            finally 
+            {
+                write-host "The program 2 has run completely."
+            }
+            # Controlling services
+        # Start-Service-Name 'wscsvc'
+        # Stop-Service-Name 'wscsvc'
+        # Restart-Service-Name 'wscsvc'
+        }
+        $name = read-host "Enter a serice that you want to get infor " # wscsvc == windows security center service
+        serviceInfor($name)
+#>
+# Collect Windows Event Log Entries
+function logInfor()
+{
+# collect windows logs using Get-EventLog
+    get-eventLog system -After (get-date).AddHours(-12) | where-object { $_.EntryType -match "Error" -or $_.EntryType -match "Warning"}
+    #get system logs from 12h priviously to now 
+  #  get-eventLog system -before (get-date -Format "2025-05-10") | where-object { $_.EntryType -match "Error" -or $_.EntryType -match "Warning"}
+    #get system logs from 2025-05-10 to past. 
+# collect windows logs using Get-WinEvent
+        Get-WinEvent -FilterHashtable @{LogName="System";Level=2,3;StartTime=(get-date).AddHours(-12)} | Format-List *       
+}
+logInfor
