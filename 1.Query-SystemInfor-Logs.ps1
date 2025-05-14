@@ -1,5 +1,5 @@
 #author: Nguyen Dang Manh Cuong
-
+#date: 2025-05-15
 # 1. retrieving process information
 <#        function processInfor {
             param ($name)
