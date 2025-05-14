@@ -1,6 +1,6 @@
 #author: Nguyen Dang Manh Cuong
 
-#retrieving process information
+# 1. retrieving process information
 <#        function processInfor {
             param ($name)
             # retrieve running processes    
@@ -24,7 +24,7 @@
         $name = read-host "Enter a process that you want to get infor " # get name of the process
         processInfor($name)
 #>
-        # retrieve services running 
+ # 2. retrieve services running 
 <#        Function serviceInfor {
             param($name)
             try {
@@ -49,7 +49,8 @@
         $name = read-host "Enter a serice that you want to get infor " # wscsvc == windows security center service
         serviceInfor($name)
 #>
-# Collect Windows Event Log Entries
+# 3. Collect Windows Event Log Entries
+<#
 function logInfor()
 {
 # collect windows logs using Get-EventLog
@@ -60,4 +61,20 @@ function logInfor()
 # collect windows logs using Get-WinEvent
         Get-WinEvent -FilterHashtable @{LogName="System";Level=2,3;StartTime=(get-date).AddHours(-12)} | Format-List *       
 }
+        
 logInfor
+#>
+
+# 4. Query networking information 
+function networkingInfor()
+{
+    param($interface)
+    # Query Computer Network Properties
+        Get-NetAdapter -name *
+        get-netadapter -name *   -includehidden
+        # get all apdapter interface 
+        Get-NetAdapter -name $interface | format-list *
+        #get a specific interface information
+    #Perform a Network Trace
+}
+networkingInfor("wi-fi")
