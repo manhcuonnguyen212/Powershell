@@ -12,8 +12,8 @@
     easy-to-use and implement
 ## Settings Trap
     What kinds of trap can be set 
-        Hotpotss
-    Create a Honeyport 
+        Hotpots
+    1.Create a Honeyport 
         Run : HoneyPort.ps1
         Check connection: Test-NetConnection -Computername localhost -Port 12345 
         Stop the script: netstat -ano | Where-object{$_ -like "*12345*"} # find out PID
