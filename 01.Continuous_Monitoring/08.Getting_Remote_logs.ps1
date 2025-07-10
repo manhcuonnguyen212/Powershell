@@ -3,12 +3,12 @@
 # In this section, we will connect to  windows-based system and export log entries 
 
 
-$servers = Import-Csv -Path "D:\CodePowerShell\PowerShell\5.1Server.csv"
-$path = "D:\CodePowerShell\PowerShell\"
+$servers = Import-Csv -Path "Servers.csv"
+$path = (Get-Location).Path
 function Invoke-RemoteConnection
 {
     [CmdLetBinding()]param( [parameter(position=0,Mandatory=$true)][String[]]$Server)
-    $session = New-PSSession -ComputerName $server -Credential (Get-Credential)
+    $session = New-PSSession -ComputerName $server 
     return $session 
 }
 $servers | foreach-object { Invoke-RemoteConnection $_.Name}
@@ -34,4 +34,3 @@ $servers | foreach-object { Invoke-RemoteConnection $_.Name}
     $sysLog | export-csv -path "$path\$computerName-System.csv"
  
 }
-remove-pssession *

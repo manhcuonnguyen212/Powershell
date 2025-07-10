@@ -1,0 +1,15 @@
+"TimeCreated","Id","LevelDisplayName","Message"
+"7/8/2025 8:12:58 AM","1014","Warning","Name resolution for the name t-ring-fdv2.msedge.net timed out after none of the configured DNS servers responded. Client PID 11472."
+"7/8/2025 7:56:46 AM","10016","Warning","The application-specific permission settings do not grant Local Activation permission for the COM Server application with CLSID 
+{2593F8B9-4EAF-457C-B68A-50F6B8EA6B54}
+ and APPID 
+{15C20B67-12E7-4BB6-92BB-7AFF07997402}
+ to the user HELLOWORLD\ManhCuongNguyen SID (S-1-5-21-1851821782-1608974651-724839800-1001) from address LocalHost (Using LRPC) running in the application container MicrosoftWindows.Client.CBS_1000.26100.107.0_x64__cw5n1h2txyewy SID (S-1-15-2-283421221-3183566570-1718213290-751554359-3541592344-2312209569-3374928651). This security permission can be modified using the Component Services administrative tool."
+"7/8/2025 7:52:16 AM","6000","Warning","6000 - BSS missed beacons. This event is info event which is used for debug purposes only."
+"7/8/2025 7:52:15 AM","6000","Warning","6000 - BSS missed beacons. This event is info event which is used for debug purposes only."
+"7/8/2025 7:52:15 AM","6000","Warning","6000 - BSS missed beacons. This event is info event which is used for debug purposes only."
+"7/8/2025 7:52:15 AM","6000","Warning","6000 - BSS missed beacons. This event is info event which is used for debug purposes only."
+"7/8/2025 7:52:15 AM","6000","Warning","6000 - BSS missed beacons. This event is info event which is used for debug purposes only."
+"7/8/2025 7:52:15 AM","6000","Warning","6000 - BSS missed beacons. This event is info event which is used for debug purposes only."
+"7/8/2025 7:52:15 AM","6000","Warning","6000 - BSS missed beacons. This event is info event which is used for debug purposes only."
+"7/8/2025 7:52:15 AM","6000","Warning","6000 - BSS missed beacons. This event is info event which is used for debug purposes only."
